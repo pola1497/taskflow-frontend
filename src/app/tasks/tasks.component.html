@@ -1,1 +1,18 @@
-<p>tasks works!</p>
+<h2>Lista de tareas</h2>
+
+<button routerLink="/tasks/new">
+  Create New Task
+</button>
+
+<ul>
+  <li *ngFor="let task of tasks">
+    {{ task.id }} - {{ task.title }} - {{ task.status }} - {{ task.priority }}
+
+    <button [routerLink]="['/tasks/edit', task.id]">
+      Edit Task
+    </button>
+    <button (click)="onDelete(task.id)">
+      Delete Task
+    </button>
+  </li>
+</ul>
