@@ -2,11 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { TasksService, Task } from './tasks.service';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { TaskCreateButtonComponent } from './task-create-button/task-create-button.component';
+import { TasksTableComponent } from './tasks-table/tasks-table.component';
 
 @Component({
   selector: 'app-tasks',
   standalone: true,
-  imports: [CommonModule, RouterModule],
+  imports: [CommonModule, RouterModule, TaskCreateButtonComponent, TasksTableComponent],
   templateUrl: './tasks.component.html',
   styleUrl: './tasks.component.scss'
 })
