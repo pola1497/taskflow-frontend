@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { TasksService, TaskPayload } from '../tasks.service';
 import { ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-task-form',
@@ -21,7 +22,8 @@ export class TaskFormComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private tasksService: TasksService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private router : Router
   ) {
     this.taskForm = this.fb.group({
       title: ['', Validators.required],
@@ -82,6 +84,7 @@ export class TaskFormComponent implements OnInit {
       this.tasksService.updateTask(Number(this.taskId), payload).subscribe({
         next: (updatedTask) => {
           console.log('Task updated successfully:', updatedTask);
+          this.router.navigate(['/tasks']);
         },
         error: (error) => {
           console.error('Error updating task:', error);
@@ -91,6 +94,7 @@ export class TaskFormComponent implements OnInit {
       this.tasksService.createTask(payload).subscribe({
         next: (createdTask) => {
           console.log('Task created successfully:', createdTask);
+          this.router.navigate(['/tasks']);
         },
         error: (error) => {
           console.error('Error creating task:', error);
